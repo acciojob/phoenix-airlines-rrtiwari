@@ -12,7 +12,8 @@ const FlightSearch = () => {
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     if (!source || !destination || !date) {
       alert("Please fill all fields");
       return;
@@ -33,6 +34,7 @@ const FlightSearch = () => {
   return (
     <div>
       <h2>Search Flights</h2>
+      <form onSubmit={handleSearch}>
       <input
         type="text"
         placeholder="Source"
@@ -50,7 +52,8 @@ const FlightSearch = () => {
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
+       <button type="submit">Search</button>
+      </form>
 
       <div>
         {flights.map((flight) => (
